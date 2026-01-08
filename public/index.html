@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Damaturu Clinic Healthcare Records</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Damaturu Clinic Healthcare Records</h1>
+    <p class="subtitle">Secure cloud-based storage system (Demo UI)</p>
+  </header>
+
+  <main>
+    <!-- AUTH SECTION -->
+    <section id="authSection">
+      <h2>Login</h2>
+      <form id="loginForm" class="card">
+        <div class="form-group">
+          <label for="loginEmail">Email</label>
+          <input type="email" id="loginEmail" required />
+        </div>
+        <div class="form-group">
+          <label for="loginPassword">Password</label>
+          <input type="password" id="loginPassword" required />
+        </div>
+        <button type="submit">Login</button>
+      </form>
+
+      <details class="card">
+        <summary>Register new health worker (demo)</summary>
+        <form id="registerForm">
+          <div class="form-group">
+            <label for="regName">Name</label>
+            <input type="text" id="regName" required />
+          </div>
+          <div class="form-group">
+            <label for="regEmail">Email</label>
+            <input type="email" id="regEmail" required />
+          </div>
+          <div class="form-group">
+            <label for="regPassword">Password</label>
+            <input type="password" id="regPassword" required />
+          </div>
+          <div class="form-group">
+            <label for="regRole">Role</label>
+            <select id="regRole">
+              <option value="doctor">Doctor</option>
+              <option value="nurse">Nurse</option>
+              <option value="staff">Staff</option>
+              <option value="admin">Admin</option>
+            </select>
+          </div>
+          <button type="submit">Register</button>
+        </form>
+      </details>
+    </section>
+
+    <!-- APP SECTION (VISIBLE AFTER LOGIN) -->
+    <section id="appSection" style="display: none;">
+      <div class="top-bar card">
+        <div>
+          Logged in as: <span id="currentUserName"></span>
+          (<span id="currentUserRole"></span>)
+        </div>
+        <button id="logoutBtn">Logout</button>
+      </div>
+
+      <section class="layout">
+        <!-- LEFT COLUMN: PATIENTS -->
+        <div class="column">
+          <h2>Patients</h2>
+
+          <!-- CREATE PATIENT -->
+          <div class="card">
+            <h3>Create Patient</h3>
+            <form id="patientForm">
+              <div class="form-group">
+                <label for="patientFirstName">First Name</label>
+                <input type="text" id="patientFirstName" required />
+              </div>
+              <div class="form-group">
+                <label for="patientLastName">Last Name</label>
+                <input type="text" id="patientLastName" required />
+              </div>
+              <div class="form-group">
+                <label for="patientDob">Date of Birth</label>
+                <input type="date" id="patientDob" required />
+              </div>
+              <div class="form-group">
+                <label for="patientGender">Gender</label>
+                <select id="patientGender" required>
+                  <option value="">Select</option>
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="patientPhone">Phone</label>
+                <input type="text" id="patientPhone" />
+              </div>
+              <div class="form-group">
+                <label for="patientAddress">Address</label>
+                <input type="text" id="patientAddress" />
+              </div>
+              <button type="submit">Save Patient</button>
+            </form>
+          </div>
+
+          <!-- PATIENT LIST -->
+          <div class="card">
+            <div class="card-header">
+              <h3>Patient List</h3>
+              <button id="loadPatientsBtn" type="button">Refresh</button>
+            </div>
+            <div id="patientList"></div>
+          </div>
+        </div>
+
+        <!-- RIGHT COLUMN: MEDICAL RECORDS -->
+        <div class="column">
+          <h2>Medical Records</h2>
+
+          <!-- CREATE RECORD -->
+          <div class="card">
+            <h3>Create Medical Record</h3>
+            <form id="recordForm">
+              <div class="form-group">
+                <label for="recordPatientSelect">Patient</label>
+                <select id="recordPatientSelect" required>
+                  <option value="">Select patient</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="recordType">Record Type</label>
+                <input type="text" id="recordType" placeholder="e.g. consultation, lab" required />
+              </div>
+              <div class="form-group">
+                <label for="recordSummary">Summary</label>
+                <input type="text" id="recordSummary" placeholder="Short summary" />
+              </div>
+              <div class="form-group">
+                <label for="recordData">Clinical Details</label>
+                <textarea id="recordData" rows="4" placeholder="Diagnosis, treatment plan, etc." required></textarea>
+              </div>
+              <button type="submit">Save Record</button>
+            </form>
+          </div>
+
+          <!-- VIEW RECORDS -->
+          <div class="card">
+            <div class="card-header">
+              <h3>View Records</h3>
+            </div>
+            <div class="form-group">
+              <label for="viewPatientSelect">Select Patient</label>
+              <select id="viewPatientSelect">
+                <option value="">Select patient</option>
+              </select>
+            </div>
+            <button id="loadRecordsBtn" type="button">Load Records</button>
+            <div id="recordsList"></div>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <!-- STATUS / MESSAGES -->
+    <section id="statusSection">
+      <div id="statusMessage"></div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
